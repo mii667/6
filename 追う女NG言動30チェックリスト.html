@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>追う女がやりがちなNG言動30チェックリスト</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+      background: linear-gradient(135deg, #fff0f5 0%, #fce4ec 60%, #f8bbd0 100%);
+      min-height: 100vh;
+      color: #333;
+    }
+
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 20px 16px 60px;
+    }
+
+    /* ヘッダー */
+    .header {
+      text-align: center;
+      padding: 40px 20px 28px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: linear-gradient(90deg, #f48fb1, #e91e8c);
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      padding: 5px 18px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+    }
+
+    .header h1 {
+      font-size: 24px;
+      font-weight: 900;
+      color: #c2185b;
+      line-height: 1.45;
+      margin-bottom: 10px;
+    }
+
+    .header h1 em {
+      font-size: 34px;
+      font-style: normal;
+      display: block;
+    }
+
+    .header-sub {
+      font-size: 13px;
+      color: #888;
+      line-height: 1.9;
+    }
+
+    /* イントロ */
+    .intro-box {
+      background: white;
+      border-radius: 18px;
+      padding: 22px 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 14px rgba(244,143,177,0.18);
+    }
+
+    .intro-box p {
+      font-size: 13px;
+      color: #666;
+      line-height: 2;
+    }
+
+    .hl { color: #e91e8c; font-weight: 700; }
+
+    /* スコアバー（上部固定） */
+    .score-sticky {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: white;
+      border-radius: 0 0 18px 18px;
+      padding: 12px 20px;
+      box-shadow: 0 4px 20px rgba(233,30,140,0.15);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .score-num {
+      font-size: 28px;
+      font-weight: 900;
+      color: #e91e8c;
+      min-width: 60px;
+      text-align: center;
+      line-height: 1;
+    }
+
+    .score-num span {
+      font-size: 12px;
+      font-weight: 400;
+      color: #999;
+      display: block;
+    }
+
+    .score-bar-wrap {
+      flex: 1;
+    }
+
+    .score-label {
+      font-size: 11px;
+      color: #999;
+      margin-bottom: 5px;
+    }
+
+    .score-bar-bg {
+      height: 10px;
+      background: #fce4ec;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .score-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #f48fb1, #e91e8c);
+      border-radius: 10px;
+      transition: width 0.4s ease;
+      width: 0%;
+    }
+
+    /* カテゴリー */
+    .category-section {
+      margin-bottom: 24px;
+    }
+
+    .category-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 18px;
+      background: linear-gradient(135deg, #f48fb1, #e91e8c);
+      color: white;
+      border-radius: 14px 14px 0 0;
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: 0.5px;
+    }
+
+    .category-title .icon { font-size: 18px; }
+
+    .category-items {
+      background: white;
+      border-radius: 0 0 14px 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(233,30,140,0.1);
+    }
+
+    /* チェックアイテム */
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      padding: 16px 18px;
+      border-bottom: 1px solid #fff0f5;
+      cursor: pointer;
+      transition: background 0.2s;
+      gap: 14px;
+      position: relative;
+    }
+
+    .check-item:last-child {
+      border-bottom: none;
+    }
+
+    .check-item:hover {
+      background: #fff5f8;
+    }
+
+    .check-item.checked {
+      background: linear-gradient(135deg, #fce4ec, #fff0f5);
+    }
+
+    .check-item.checked .item-text {
+      text-decoration: line-through;
+      color: #bbb;
+    }
+
+    .check-box {
+      width: 24px;
+      height: 24px;
+      border-radius: 8px;
+      border: 2px solid #f48fb1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+      transition: all 0.2s;
+      background: white;
+    }
+
+    .check-item.checked .check-box {
+      background: linear-gradient(135deg, #f48fb1, #e91e8c);
+      border-color: #e91e8c;
+    }
+
+    .check-mark {
+      color: white;
+      font-size: 14px;
+      font-weight: 900;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .check-item.checked .check-mark {
+      opacity: 1;
+    }
+
+    .item-content {
+      flex: 1;
+    }
+
+    .item-num {
+      font-size: 10px;
+      color: #f06292;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 3px;
+    }
+
+    .item-text {
+      font-size: 14px;
+      font-weight: 600;
+      color: #333;
+      line-height: 1.6;
+      margin-bottom: 4px;
+      transition: all 0.2s;
+    }
+
+    .item-comment {
+      font-size: 11px;
+      color: #aaa;
+      line-height: 1.6;
+      display: none;
+    }
+
+    .check-item.checked .item-comment {
+      display: block;
+      color: #f06292;
+    }
+
+    /* 結果エリア */
+    .result-area {
+      background: white;
+      border-radius: 20px;
+      padding: 32px 24px;
+      text-align: center;
+      box-shadow: 0 4px 24px rgba(233,30,140,0.15);
+      margin-top: 28px;
+      display: none;
+      animation: fadeUp 0.5s ease;
+    }
+
+    .result-area.show {
+      display: block;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .result-emoji { font-size: 48px; margin-bottom: 12px; display: block; }
+
+    .result-badge {
+      display: inline-block;
+      background: linear-gradient(90deg, #f48fb1, #e91e8c);
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      padding: 5px 16px;
+      border-radius: 20px;
+      margin-bottom: 14px;
+    }
+
+    .result-score-big {
+      font-size: 60px;
+      font-weight: 900;
+      color: #e91e8c;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .result-score-big span { font-size: 20px; }
+
+    .result-title {
+      font-size: 22px;
+      font-weight: 900;
+      color: #c2185b;
+      line-height: 1.4;
+      margin-bottom: 18px;
+    }
+
+    .result-desc {
+      background: #fff5f8;
+      border-radius: 14px;
+      padding: 18px;
+      text-align: left;
+      margin-bottom: 18px;
+    }
+
+    .result-desc p {
+      font-size: 13px;
+      line-height: 1.9;
+      color: #555;
+    }
+
+    .result-point {
+      background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+      border-left: 4px solid #e91e8c;
+      border-radius: 14px;
+      padding: 18px;
+      text-align: left;
+    }
+
+    .result-point .pt-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: #e91e8c;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+
+    .result-point p {
+      font-size: 14px;
+      font-weight: 700;
+      color: #333;
+      line-height: 1.8;
+    }
+
+    /* リセットボタン */
+    .reset-btn {
+      margin-top: 18px;
+      padding: 13px 36px;
+      background: white;
+      border: 2px solid #f48fb1;
+      color: #e91e8c;
+      font-size: 14px;
+      font-weight: 700;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .reset-btn:hover { background: #fff5f8; }
+
+    /* 結果確認ボタン */
+    .check-result-btn {
+      display: block;
+      width: 100%;
+      padding: 18px;
+      background: linear-gradient(135deg, #f48fb1, #e91e8c);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: 900;
+      cursor: pointer;
+      margin-top: 24px;
+      box-shadow: 0 6px 22px rgba(233,30,140,0.3);
+      transition: all 0.3s;
+      letter-spacing: 0.5px;
+    }
+
+    .check-result-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(233,30,140,0.4);
+    }
+
+    .footer {
+      text-align: center;
+      padding: 28px 0 10px;
+      font-size: 11px;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div class="badge">✦ 無料プレゼント ✦</div>
+    <h1>
+      <em>追う女がやりがちな</em>
+      NG言動 30チェックリスト
+    </h1>
+    <p class="header-sub">「え、これって普通じゃないの…？」<br>無意識にやってしまっていること、全部あぶり出します。</p>
+  </div>
+
+  <div class="intro-box">
+    <p>
+      「なんで私ばっかり追いかけてるんだろう…」<br>
+      そう思いながら、<span class="hl">自分でも気づかないうちにやってしまっている行動</span>が、実は彼を遠ざける原因になっています。<br><br>
+      このチェックリストでは「追う女がやりがちなNG言動」を30個リストアップ。当てはまるものにチェックを入れながら読んでみてください。<br><br>
+      <span class="hl">「全部やってた…」</span>と気づくことが、変わる第一歩になります。
+    </p>
+  </div>
+
+  <div class="score-sticky">
+    <div class="score-num">
+      <span id="score-display">0</span>
+      <span>/ 30</span>
+    </div>
+    <div class="score-bar-wrap">
+      <div class="score-label">チェックした数</div>
+      <div class="score-bar-bg">
+        <div class="score-bar-fill" id="score-bar"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="checklist"></div>
+
+  <button class="check-result-btn" onclick="showResult()">📊 診断結果を見る</button>
+
+  <div class="result-area" id="result-area"></div>
+
+  <div class="footer">© みい モテ育成 ｜ 無断転載禁止</div>
+</div>
+
+<script>
+const categories = [
+  {
+    icon: "💬",
+    title: "LINEの追いかけ行動",
+    items: [
+      {
+        text: "返信が来ないとき「届いた？」「ねえ」と追撃LINEを送ってしまう",
+        comment: "追撃するたびに、彼の中であなたの価値が下がっています。"
+      },
+      {
+        text: "既読スルーされると「私が何かした？」と自分を責めてしまう",
+        comment: "既読スルーはほぼ彼の都合。あなたは何も悪くないのに、自分を傷つけています。"
+      },
+      {
+        text: "彼のオンライン表示が気になって、ずっとチェックしてしまう",
+        comment: "監視している間、あなたの時間と心が消耗していきます。"
+      },
+      {
+        text: "返信が来たら、ほぼ即返し（1〜2分以内）してしまう",
+        comment: "即返しは「いつでも待っています」という無言のサインになっています。"
+      },
+      {
+        text: "自分からの連絡が多くて、会話の始まりはいつも自分から",
+        comment: "彼が連絡してくる機会を、あなた自身が奪ってしまっています。"
+      },
+      {
+        text: "彼のSNSのいいね・フォロワー・ストーリー閲覧を毎日チェックしている",
+        comment: "SNS監視は不安を増やすだけ。彼の行動を調べても、何も解決しません。"
+      }
+    ]
+  },
+  {
+    icon: "📅",
+    title: "デート・予定の取り方",
+    items: [
+      {
+        text: "彼の都合に合わせて、自分の予定をキャンセルしてしまう",
+        comment: "あなたが自分の時間を大切にしないと、彼もあなたの時間を大切にしません。"
+      },
+      {
+        text: "「暇？」「会えない？」とふんわりした誘い方をしてしまう",
+        comment: "曖昧な誘い方は、断られやすく彼にプレッシャーを与えない分、追いやすい構造です。"
+      },
+      {
+        text: "断られると「じゃあいつなら？」とすぐ次の日程を聞いてしまう",
+        comment: "1回断られたら引くのが正解。すぐ次を聞くのは「必死感」が伝わります。"
+      },
+      {
+        text: "デートのプランをいつも自分が全部考えて提案してしまう",
+        comment: "彼に「考える機会」を与えないと、あなたへの投資感が育ちません。"
+      },
+      {
+        text: "彼が来てくれるだけでいいと、行きたい場所・食べたいものを言えない",
+        comment: "自分の希望を言える女性のほうが、男性には「一緒にいて楽しい」と映ります。"
+      }
+    ]
+  },
+  {
+    icon: "😟",
+    title: "感情・不安の表し方",
+    items: [
+      {
+        text: "彼の返信が短いと「冷めた？嫌われた？」とすぐ不安になって確認してしまう",
+        comment: "彼の返信の長さとあなたへの気持ちは、ほとんど関係ありません。"
+      },
+      {
+        text: "「私のことどう思ってる？」と彼に直接聞いてしまう",
+        comment: "聞いて安心するのは一時的。確認癖は彼に「重い」という印象を与えます。"
+      },
+      {
+        text: "彼が他の女性の話をすると、嫉妬して態度に出てしまう",
+        comment: "嫉妬を見せるたびに「この子は不安定だ」という印象がつきます。"
+      },
+      {
+        text: "彼の機嫌が悪いと「どうしたの？」「私のせい？」とすぐ聞いてしまう",
+        comment: "男性は一人で処理したいことがある。聞かれすぎると逃げたくなります。"
+      },
+      {
+        text: "「好きって言って」「会いたい」と先に要求を言ってしまう",
+        comment: "要求を先に出すと、彼は「義務感」で動くようになります。自発的な愛情が育ちません。"
+      },
+      {
+        text: "「私って好き？」と何度も同じことを確認してしまう",
+        comment: "何度聞いても安心できないのは、問題の根本が「彼の気持ち」ではないから。"
+      }
+    ]
+  },
+  {
+    icon: "💔",
+    title: "自分を下げる行動",
+    items: [
+      {
+        text: "「私なんかじゃダメかも」「どうせ私は…」と自分を下げた発言をしてしまう",
+        comment: "自己否定は相手にも伝染します。あなた自身が自分の価値を信じていないと、彼も信じられません。"
+      },
+      {
+        text: "彼の趣味・意見・好みに合わせすぎて、自分の本音を隠している",
+        comment: "本当の自分を見せないと、彼は「幻」と付き合っているだけ。長続きしません。"
+      },
+      {
+        text: "「何でもいいよ」「〇〇くんに任せる」と自分の意見を言わないことが多い",
+        comment: "意見のない人は、一緒にいても「つまらない」と思われやすい。"
+      },
+      {
+        text: "嫌なことをされても「私が悪いのかも」と我慢してしまう",
+        comment: "我慢を続けるほど、彼に「何をしても大丈夫な相手」と思われていきます。"
+      },
+      {
+        text: "彼に気に入られようと、会うたびに性格や話し方を変えてしまう",
+        comment: "演じるほどに「本当の自分」が見えなくなり、自分でも疲れていきます。"
+      }
+    ]
+  },
+  {
+    icon: "🔗",
+    title: "依存・執着行動",
+    items: [
+      {
+        text: "彼からLINEが来ると、何をしていても手を止めてすぐ確認してしまう",
+        comment: "「いつでも反応してくれる人」は、彼にとって当たり前の存在になっていきます。"
+      },
+      {
+        text: "彼の過去の恋愛・昔のSNS投稿を遡って調べてしまう",
+        comment: "過去を調べるほど、不安の素材を自分で増やしています。"
+      },
+      {
+        text: "彼との会話ログを何度も読み返してしまう",
+        comment: "同じ文章を読み返すたびに、余計な解釈が生まれ不安が大きくなります。"
+      },
+      {
+        text: "友達や自分の予定より、彼の予定を優先してしまう",
+        comment: "自分の生活を彼中心にするほど、あなたの「重力」が弱くなります。"
+      },
+      {
+        text: "彼が返信しない間、他のことに集中できなくなる",
+        comment: "彼のことで頭がいっぱいな状態は、外から見ると「依存している」と伝わります。"
+      }
+    ]
+  },
+  {
+    icon: "⚠️",
+    title: "関係を壊す行動",
+    items: [
+      {
+        text: "「なんで連絡くれないの？」「最近冷たくない？」と責める口調になってしまう",
+        comment: "責める言葉は彼を遠ざけます。言いたいことは「伝え方」を変えると全然違う結果になります。"
+      },
+      {
+        text: "彼が冷たいとき、自分から「何か怒らせた？ごめんね」と謝ってしまう",
+        comment: "悪くないのに謝ると、彼に「何をしても許してもらえる」という誤ったメッセージを送ります。"
+      },
+      {
+        text: "別れを恐れて、嫌なことがあっても何も言えずにいる",
+        comment: "本音を言えない関係は、いずれ限界を迎えます。「言える関係」こそが長続きします。"
+      }
+    ]
+  }
+];
+
+let checkedItems = {};
+
+function renderChecklist() {
+  const container = document.getElementById('checklist');
+  let globalNum = 0;
+
+  categories.forEach(cat => {
+    const section = document.createElement('div');
+    section.className = 'category-section';
+
+    const title = document.createElement('div');
+    title.className = 'category-title';
+    title.innerHTML = `<span class="icon">${cat.icon}</span>${cat.title}`;
+    section.appendChild(title);
+
+    const itemsWrap = document.createElement('div');
+    itemsWrap.className = 'category-items';
+
+    cat.items.forEach(item => {
+      globalNum++;
+      const id = `item-${globalNum}`;
+      checkedItems[id] = false;
+
+      const div = document.createElement('div');
+      div.className = 'check-item';
+      div.id = id;
+      div.onclick = () => toggleItem(id);
+
+      div.innerHTML = `
+        <div class="check-box">
+          <span class="check-mark">✓</span>
+        </div>
+        <div class="item-content">
+          <div class="item-num">No.${String(globalNum).padStart(2, '0')}</div>
+          <div class="item-text">${item.text}</div>
+          <div class="item-comment">💡 ${item.comment}</div>
+        </div>
+      `;
+
+      itemsWrap.appendChild(div);
+    });
+
+    section.appendChild(itemsWrap);
+    container.appendChild(section);
+  });
+}
+
+function toggleItem(id) {
+  checkedItems[id] = !checkedItems[id];
+  const el = document.getElementById(id);
+  el.classList.toggle('checked', checkedItems[id]);
+  updateScore();
+}
+
+function updateScore() {
+  const count = Object.values(checkedItems).filter(Boolean).length;
+  document.getElementById('score-display').textContent = count;
+  document.getElementById('score-bar').style.width = (count / 30 * 100) + '%';
+}
+
+function showResult() {
+  const count = Object.values(checkedItems).filter(Boolean).length;
+  const area = document.getElementById('result-area');
+
+  let result;
+
+  if (count <= 5) {
+    result = {
+      emoji: "👑",
+      badge: "LEVEL 1",
+      title: "ほぼ追われ女タイプ",
+      desc: `チェックが少なく、すでに「追われる女」に近い状態です。自分軸を持って行動できている証拠。\n\nただ、スコアが低すぎる人は「今は本気で好きな人がいない」可能性も。好きな人ができたとき、この状態を保てるかが勝負です。焦りを感じたら、まずこのリストを見返してみてください。`,
+      point: "現状を維持しながら、好きな人ができたときの「自分の行動パターン」を意識しておくこと。"
+    };
+  } else if (count <= 12) {
+    result = {
+      emoji: "🌸",
+      badge: "LEVEL 2",
+      title: "惜しい！あと一歩タイプ",
+      desc: `基本的には自分を持っているけれど、好きな人ができると「つい」やってしまう行動がいくつかある状態。\n\n感情が動くと行動パターンが崩れがち。チェックが入った項目を見ると、どの場面で「追う女モード」になるかがわかります。`,
+      point: "チェックが入った項目の中で「これは特によくやる…」と思うものを1つだけ選んで、今週意識的にやめてみること。"
+    };
+  } else if (count <= 21) {
+    result = {
+      emoji: "🔥",
+      badge: "LEVEL 3",
+      title: "追う女・予備軍タイプ",
+      desc: `無意識にやってしまっているパターンが多めです。「自分では気づいていなかった」という項目がいくつかあったはず。\n\n相手の反応に敏感で、不安になりやすいのが特徴。「頑張ることで愛されようとしている」状態ですが、それが逆効果になっています。`,
+      point: "今すぐ「彼から連絡が来ない日=自分の時間を楽しむ日」に決めること。彼中心の時間配分を変えるだけで、気持ちの余裕が生まれます。"
+    };
+  } else {
+    result = {
+      emoji: "💌",
+      badge: "LEVEL 4",
+      title: "追う女・重症タイプ",
+      desc: `かなり多くの項目が当てはまりましたね。でも、正直に向き合えたあなたは本当にすごい。\n\n「変わりたい」と思っているから、ちゃんとチェックできた。追う女になってしまうのは「愛されたい・嫌われたくない」という純粋な気持ちから。その気持ちは何も悪くない。ただ、今のやり方では逆効果になってしまっています。`,
+      point: "まず1つだけやめること。今日から「彼に追撃LINEを送らない」だけを徹底する。それだけで3日後に何かが変わり始めます。"
+    };
+  }
+
+  area.innerHTML = `
+    <span class="result-emoji">${result.emoji}</span>
+    <div class="result-badge">${result.badge}</div>
+    <div class="result-score-big">${count}<span> / 30</span></div>
+    <div class="result-title">${result.title}</div>
+    <div class="result-desc"><p>${result.desc.replace(/\n/g, '<br>')}</p></div>
+    <div class="result-point">
+      <div class="pt-label">📌 今すぐやること</div>
+      <p>${result.point}</p>
+    </div>
+    <button class="reset-btn" onclick="resetAll()">もう一度チェックする</button>
+  `;
+
+  area.classList.add('show');
+  area.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function resetAll() {
+  Object.keys(checkedItems).forEach(id => {
+    checkedItems[id] = false;
+    const el = document.getElementById(id);
+    if (el) el.classList.remove('checked');
+  });
+  updateScore();
+  document.getElementById('result-area').classList.remove('show');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+renderChecklist();
+</script>
+</body>
+</html>
